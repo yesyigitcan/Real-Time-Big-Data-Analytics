@@ -1,0 +1,1 @@
+ambient coolant u_d u_q motor_speed torque i_d i_q pm stator_yoke stator_tooth stator_winding profile_id
