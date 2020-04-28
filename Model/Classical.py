@@ -10,13 +10,13 @@ logging.basicConfig(filename='Classical.log',
                             filemode='a',
                             format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
                             datefmt='%m/%d/%Y %H:%M:%S',
-                            level=logging.DEBUG)
+                            level=logging.INFO)
 
 host = "localhost"
 username = "root"
 password = ""
 db = "temperature"
-tablename = "inf_20_4"
+tablename = "inf_20"
 
 engine = create_engine('mysql+pymysql://' + username + password +':@' + host + '/' + db)
 
@@ -73,3 +73,33 @@ print("KNN | Accuracy Score:", model.score(X_test, y_test))
 logging.info("KNN | Accuracy Score: " + str(model.score(X_test, y_test)))
 print("KNN | MSE:", mean_squared_error(y_test, model.predict(X_test)))
 logging.info("KNN | MSE: " + str(mean_squared_error(y_test, model.predict(X_test))))
+
+##### Linear Regression #####
+from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+print("Linear Regression | Accuracy Score:", model.score(X_test, y_test))
+logging.info("Linear Regression | Accuracy Score: " + str(model.score(X_test, y_test)))
+print("Linear Regression | MSE:", mean_squared_error(y_test, model.predict(X_test)))
+logging.info("Linear Regression | MSE: " + str(mean_squared_error(y_test, model.predict(X_test))))
+
+##### Decision Tree Regression #####
+from sklearn.tree import DecisionTreeRegressor
+model = DecisionTreeRegressor()
+model.fit(X_train, y_train)
+
+print("Decision Tree Regression | Accuracy Score:", model.score(X_test, y_test))
+logging.info("Decision Tree Regression | Accuracy Score: " + str(model.score(X_test, y_test)))
+print("Decision Tree Regression | MSE:", mean_squared_error(y_test, model.predict(X_test)))
+logging.info("Decision Tree Regression | MSE: " + str(mean_squared_error(y_test, model.predict(X_test))))
+
+##### Bayesian Ridge #####
+from sklearn.linear_model import BayesianRidge
+model = BayesianRidge()
+model.fit(X_train, y_train)
+
+print("Bayesian Ridge | Accuracy Score:", model.score(X_test, y_test))
+logging.info("Bayesian Ridge | Accuracy Score: " + str(model.score(X_test, y_test)))
+print("Bayesian Ridge | MSE:", mean_squared_error(y_test, model.predict(X_test)))
+logging.info("Bayesian Ridge | MSE: " + str(mean_squared_error(y_test, model.predict(X_test))))
