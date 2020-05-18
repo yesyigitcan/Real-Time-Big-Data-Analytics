@@ -35,3 +35,7 @@ https://www.kaggle.com/wkirgsn/electric-motor-temperature
     <td>0.0002303573580481708</td>
   </tr>
 </table>
+
+### Dataset Links
+Elderly Sensor Data (Classification, Real-Time) - https://archive.ics.uci.edu/ml/datasets/Activity+recognition+with+healthy+older+people+using+a+batteryless+wearable+sensor<br>
+Electric Motor Temperature (Regression) - https://www.kaggle.com/wkirgsn/electric-motor-temperature
