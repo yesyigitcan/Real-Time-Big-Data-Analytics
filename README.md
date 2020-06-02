@@ -11,6 +11,9 @@ https://www.kaggle.com/wkirgsn/electric-motor-temperature
 - Compared classical regression algorithms (SVR, Random Forest, KNN, Linear Regression, Decision Tree, BayesianRidge) 
 - Compared incremental regression algorithms (KNN, Linear Regression)
 - Results are stored in log files
+- Metrics used to monitor are determined
+- Java Spring Boot, Prometheus and Grafana has been set
+- Communication of model between server is established
 
 ### Comparision (KNN - MSE)
 <table>
