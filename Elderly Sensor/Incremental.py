@@ -7,6 +7,7 @@ from sqlalchemy import create_engine
 from creme.compose import Pipeline
 import time
 import matplotlib.pyplot as plt
+import requests
 
 engine = create_engine('mysql+pymysql://root:@localhost/tez')
 
@@ -56,6 +57,8 @@ for row, target, time_passed in zip(x, y, timeList):
         text += "0\n"
     print("Real:", target, " Predicted:", y_pred, " Time:", "%.5f" % time_passed, " Sleep Time:", "%.5f" % time_range)
     previous_time = time_passed
+    x = requests.get('http://localhost:7070/temp/4/incremental/' + str(metrics[0].get() * 100))
+    print(x.status_code)
 
 try:
     outputfile = open('C:\\Users\\YigitCan\\Desktop\\Tez-Workspace\\Real-Time-Big-Data-Analytics\\Elderly Sensor\\Output'+str(session)+'.txt', 'w')
