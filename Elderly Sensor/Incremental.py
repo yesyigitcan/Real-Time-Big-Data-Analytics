@@ -12,6 +12,7 @@ engine = create_engine('mysql+pymysql://root:@localhost/tez')
 
 session = 41
 query = "select * from elderly_sensor where session = "+str(session)+" order by 'time(second)'"
+
 df = pandas.read_sql(query, engine)
 df = df.drop("index", axis=1)
 timeList = list(df["time(second)"])
@@ -32,10 +33,9 @@ model = (
 )
 
 # Mse Accuracy Real
-outputfile = open('C:\\Users\\YigitCan\\Desktop\\Tez-Workspace\\Real-Time-Big-Data-Analytics\\Elderly Sensor\\Output'+str(session)+'.txt', 'w')
 
 
-
+text = ""
 previous_time = 0.0
 for row, target, time_passed in zip(x, y, timeList):
     time_range = time_passed - previous_time
@@ -48,15 +48,23 @@ for row, target, time_passed in zip(x, y, timeList):
     for metric in metrics:
         metric.update(target, y_pred)
         print("%.5f" % metric.get(), end=" ")
-        outputfile.write("%.5f" % metric.get() + ",")
-    
-    outputfile.write(str(target) + "," + str(y_pred) + "," + str(time_passed) + "," + str(time_range) + ",")
+        text += "%.5f" % metric.get() + ","
+    text += str(target) + "," + str(y_pred) + "," + str(time_passed) + "," + str(time_range) + ","
     if target == y_pred:
-        outputfile.write("1\n")
+        text += "1\n"
     else:
-        outputfile.write("0\n")
+        text += "0\n"
     print("Real:", target, " Predicted:", y_pred, " Time:", "%.5f" % time_passed, " Sleep Time:", "%.5f" % time_range)
     previous_time = time_passed
+
+try:
+    outputfile = open('C:\\Users\\YigitCan\\Desktop\\Tez-Workspace\\Real-Time-Big-Data-Analytics\\Elderly Sensor\\Output'+str(session)+'.txt', 'w')
+except:
+    print("File cannot create at specific position")
+    import os
+    print("So it is created in " , os.getcwd())
+    outputfile = open("output.txt", 'w')
+outputfile.write(text)
 outputfile.close()
     
 
