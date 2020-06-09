@@ -3,3 +3,30 @@
 06/09/2020 22:18:54,859 root INFO Data retrieved by Session = 60
 06/09/2020 22:18:54,878 root INFO Initial model created
 06/09/2020 22:18:54,878 root INFO Learning process has been started
+06/09/2020 23:28:59,611 root INFO Creating connection
+06/09/2020 23:28:59,664 root INFO Connection is ready
+06/09/2020 23:28:59,809 root INFO Data retrieved by Session = 60
+06/09/2020 23:28:59,821 root INFO Initial model created
+06/09/2020 23:28:59,821 root INFO Learning process has been started
+06/09/2020 23:29:01,324 root INFO Learning process is done
+06/09/2020 23:29:01,324 root INFO Total time for iterations in second 0.3197593688964844
+06/09/2020 23:29:01,324 root INFO Average time for an iteration in second 0.0004416565868735972
+06/09/2020 23:29:01,324 root INFO Record number 724
+06/09/2020 23:29:01,324 root INFO Mean squared error 0.9170124481327796
+06/09/2020 23:29:01,324 root INFO Accuracy 0.535269709543567806/09/2020 23:38:22,830 root INFO Creating connection
+06/09/2020 23:38:22,910 root INFO Connection is ready
+06/09/2020 23:38:23,169 root INFO Data retrieved by Session = 60
+06/09/2020 23:38:43,851 root INFO Creating connection
+06/09/2020 23:38:43,916 root INFO Connection is ready
+06/09/2020 23:38:44,85 root INFO Data retrieved by Session = 60
+06/09/2020 23:38:57,841 root INFO Creating connection
+06/09/2020 23:38:57,907 root INFO Connection is ready
+06/09/2020 23:38:58,95 root INFO Data retrieved by Session = 60
+06/09/2020 23:38:58,112 root INFO Initial model created
+06/09/2020 23:38:58,112 root INFO Learning process has been started
+06/09/2020 23:38:59,141 root INFO Learning process is done
+06/09/2020 23:38:59,141 root INFO Total time for iterations in second 0.2538893222808838
+06/09/2020 23:38:59,142 root INFO Average time for an iteration in second 0.0003506758595039831
+06/09/2020 23:38:59,142 root INFO Record number 724
+06/09/2020 23:38:59,142 root INFO Mean squared error 1.2217573221757327
+06/09/2020 23:38:59,142 root INFO Accuracy 0.5188284518828454

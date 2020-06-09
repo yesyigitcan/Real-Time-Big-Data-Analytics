@@ -31,7 +31,7 @@ df = df.drop("time(second)", axis=1)
 
 x = df.drop("class", axis=1).to_dict(orient="row")
 y = list(df["class"])
-
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
 metrics = (
     MSE(), 
     Accuracy()

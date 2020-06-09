@@ -4,13 +4,24 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, accuracy_score
 from sqlalchemy import create_engine
 import pandas
+import logging
+import time
 
+logging.basicConfig(filename='ElderlyClassical.log',
+                            filemode='a',
+                            format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
+                            datefmt='%m/%d/%Y %H:%M:%S',
+                            level=logging.INFO)
+
+logging.info("Creating connection")
 engine = create_engine('mysql+pymysql://root:@localhost/tez')
+logging.info("Connection is ready")
 
-session = 41
+session = 60
 query = "select * from elderly_sensor where session = "+str(session)+" order by 'time(second)'"
 
 df = pandas.read_sql(query, engine)
+logging.info("Data retrieved by Session = " + str(session))
 df = df.drop("index", axis=1)
 df = df.drop("time(second)", axis=1)
 X = df.drop("class", axis=1)
@@ -24,12 +35,24 @@ X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
 model = DecisionTreeClassifier()
+logging.info("Initial model created")
+logging.info("Learning process has been started")
+learningStartTime = time.time()
 model.fit(X_train, y_train)
+learningEndTime = time.time()
+logging.info("Learning process is done")
+predictStartTime = time.time()
 predict = model.predict(X_test)
+predictEndTime = time.time()
 acc = accuracy_score(y_test, predict)
 mse = mean_squared_error(y_test, predict)
-
-print("Metrics by Test Set")
+logging.info("Total time for learning part in second " + str(learningEndTime - learningStartTime))
+logging.info("Total time for prediction part in second " + str(predictEndTime - predictStartTime))
+logging.info("Train record number " + str(len(y_train)))
+logging.info("Test record number " + str(len(y_test)))
+logging.info("Mean squared error " + str(mse))
+logging.info("Accuracy " + str(acc))
+print("Metrics by Test Set") 
 print("MSE:", mse)
 print("Accuracy:", acc)
 
