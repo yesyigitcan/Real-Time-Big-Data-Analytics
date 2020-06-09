@@ -30,3 +30,22 @@
 06/09/2020 23:38:59,142 root INFO Record number 724
 06/09/2020 23:38:59,142 root INFO Mean squared error 1.2217573221757327
 06/09/2020 23:38:59,142 root INFO Accuracy 0.5188284518828454
+06/10/2020 00:16:56,8 root INFO Creating connection
+06/10/2020 00:16:56,145 root INFO Connection is ready
+06/10/2020 00:16:59,95 root INFO Data retrieved by all
+06/10/2020 00:17:17,305 root INFO Creating connection
+06/10/2020 00:17:17,362 root INFO Connection is ready
+06/10/2020 00:17:20,557 root INFO Data retrieved by all
+06/10/2020 00:17:21,431 root INFO Initial model created
+06/10/2020 00:17:21,431 root INFO Learning process has been started
+06/10/2020 00:19:45,694 root INFO Creating connection
+06/10/2020 00:19:45,756 root INFO Connection is ready
+06/10/2020 00:19:50,836 root INFO Data retrieved by all
+06/10/2020 00:19:52,316 root INFO Initial model created
+06/10/2020 00:19:52,316 root INFO Learning process has been started
+06/10/2020 00:20:20,733 root INFO Learning process is done
+06/10/2020 00:20:20,734 root INFO Total time for iterations in second 21.436443567276
+06/10/2020 00:20:20,734 root INFO Average time for an iteration in second 0.00028533228047167503
+06/10/2020 00:20:20,734 root INFO Record number 75128
+06/10/2020 00:20:20,734 root INFO Mean squared error 0.46642973138460797
+06/10/2020 00:20:20,734 root INFO Accuracy 0.8471368101589304

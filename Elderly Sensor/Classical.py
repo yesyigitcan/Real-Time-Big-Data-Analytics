@@ -18,10 +18,12 @@ engine = create_engine('mysql+pymysql://root:@localhost/tez')
 logging.info("Connection is ready")
 
 session = 60
-query = "select * from elderly_sensor where session = "+str(session)+" order by 'time(second)'"
+#query = "select * from elderly_sensor where session = "+str(session)+" order by 'time(second)'"
+query = "select * from elderly_sensor"
 
 df = pandas.read_sql(query, engine)
-logging.info("Data retrieved by Session = " + str(session))
+#logging.info("Data retrieved by Session = " + str(session))
+logging.info("Data retrieved by all")
 df = df.drop("index", axis=1)
 df = df.drop("time(second)", axis=1)
 X = df.drop("class", axis=1)
