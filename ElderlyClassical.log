@@ -34,3 +34,29 @@
 06/10/2020 00:21:12,882 root INFO Test record number 24793
 06/10/2020 00:21:12,882 root INFO Mean squared error 0.07328681482676562
 06/10/2020 00:21:12,883 root INFO Accuracy 0.9899568426572016
+06/11/2020 23:12:15,701 root INFO Creating connection
+06/11/2020 23:12:16,358 root INFO Connection is ready
+06/11/2020 23:12:45,709 root INFO Creating connection
+06/11/2020 23:12:45,815 root INFO Connection is ready
+06/11/2020 23:12:51,523 root INFO Data retrieved by all
+06/11/2020 23:12:51,698 root INFO Initial model created
+06/11/2020 23:12:51,698 root INFO Learning process has been started
+06/11/2020 23:12:51,973 root INFO Learning process is done
+06/11/2020 23:12:51,991 root INFO Total time for learning part in second 0.2748429775238037
+06/11/2020 23:12:51,992 root INFO Total time for prediction part in second 0.004996776580810547
+06/11/2020 23:12:51,992 root INFO Train record number 50335
+06/11/2020 23:12:51,992 root INFO Test record number 24793
+06/11/2020 23:12:51,992 root INFO Mean squared error 0.07570685274069294
+06/11/2020 23:12:51,992 root INFO Accuracy 0.9897955067962732
+06/11/2020 23:13:13,674 root INFO Creating connection
+06/11/2020 23:13:13,782 root INFO Connection is ready
+06/11/2020 23:13:20,166 root INFO Data retrieved by all
+06/11/2020 23:13:20,286 root INFO Initial model created
+06/11/2020 23:13:20,286 root INFO Learning process has been started
+06/11/2020 23:13:20,516 root INFO Learning process is done
+06/11/2020 23:13:20,529 root INFO Total time for learning part in second 0.22986698150634766
+06/11/2020 23:13:20,529 root INFO Total time for prediction part in second 0.0039958953857421875
+06/11/2020 23:13:20,529 root INFO Train record number 50335
+06/11/2020 23:13:20,529 root INFO Test record number 24793
+06/11/2020 23:13:20,529 root INFO Mean squared error 0.07711854152381721
+06/11/2020 23:13:20,529 root INFO Accuracy 0.9896745049005767
