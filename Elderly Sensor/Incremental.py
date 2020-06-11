@@ -52,10 +52,8 @@ previous_time = 0.0
 logging.info("Learning process has been started")
 for row, target, time_passed in zip(x, y, timeList):
     time_range = time_passed - previous_time
-    '''
     if time_range > 0.0:
         time.sleep(time_range)
-    '''
     try:
         iterationStartTime = time.time()
         y_pred = model.predict_one(row)
@@ -80,8 +78,10 @@ for row, target, time_passed in zip(x, y, timeList):
     print("Real:", target, " Predicted:", y_pred, " Time:", "%.5f" % time_passed, " Sleep Time:", "%.5f" % time_range)
     '''
     previous_time = time_passed
-    #x = requests.get('http://localhost:7070/temp/4/incremental/' + str(metrics[0].get() * 100))
-    #print(x.status_code)
+    mseRequest = requests.get('http://localhost:7070/elderlySensor/1/incremental/mse/' + str(metrics[0].get() * 100))
+    print(mseRequest.status_code)
+    accRequest = requests.get('http://localhost:7070/elderlySensor/1/incremental/acc/' + str(metrics[1].get() * 100))
+    print(accRequest.status_code)
 logging.info("Learning process is done")
 logging.info("Total time for iterations in second " + str(iterationTimeCounter))
 logging.info("Average time for an iteration in second " + str(iterationTimeCounter / recordNumber))

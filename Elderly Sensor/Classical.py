@@ -6,6 +6,7 @@ from sqlalchemy import create_engine
 import pandas
 import logging
 import time
+import requests
 
 logging.basicConfig(filename='ElderlyClassical.log',
                             filemode='a',
@@ -63,10 +64,17 @@ X = scaler.transform(X)
 predict2 = model.predict(X, y)
 acc = accuracy_score(y, predict2)
 mse = mean_squared_error(y, predict2)
+
+mseRequest = requests.get('http://localhost:7070/elderlySensor/1/classical/mse/' +  str(mse * 100))
+print(mseRequest.status_code)
+accRequest = requests.get('http://localhost:7070/elderlySensor/1/classical/acc/' +  str(acc * 100))
+print(accRequest.status_code)
+
 print("Metrics by All")
 print("MSE:", mse)
 print("Accuracy:", acc)
-
+'''
 if (str(input("Real/Predict Comparision? (y:Yes)"))[0].lower() == 'y'):
     for real, predict in zip(y_test, predict):
         print("Real:", real, " Predicted:", predict)
+'''
