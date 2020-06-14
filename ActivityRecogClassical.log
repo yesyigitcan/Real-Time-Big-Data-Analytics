@@ -1,0 +1,41 @@
+06/14/2020 02:39:27,141 root INFO Creating connection
+06/14/2020 02:39:28,636 root INFO Connection is ready
+06/14/2020 02:39:28,636 root INFO Limit for each class: 100
+06/14/2020 02:40:03,357 root INFO Big Df created
+06/14/2020 02:40:03,403 root INFO Initial model created
+06/14/2020 02:40:03,403 root INFO Learning process has been started
+06/14/2020 02:40:03,470 root INFO Learning process is done
+06/14/2020 02:44:59,740 root INFO Creating connection
+06/14/2020 02:44:59,937 root INFO Connection is ready
+06/14/2020 02:44:59,938 root INFO Limit for each class: 100
+06/14/2020 02:45:21,61 root INFO Big Df created
+06/14/2020 02:45:21,71 root INFO Initial model created
+06/14/2020 02:45:21,71 root INFO Learning process has been started
+06/14/2020 02:45:21,77 root INFO Learning process is done
+06/14/2020 02:47:24,105 root INFO Creating connection
+06/14/2020 02:47:24,459 root INFO Connection is ready
+06/14/2020 02:47:24,459 root INFO Limit for each class: 100
+06/14/2020 02:47:52,196 root INFO Big Df created
+06/14/2020 02:47:52,209 root INFO Initial model created
+06/14/2020 02:47:52,209 root INFO Learning process has been started
+06/14/2020 02:47:52,214 root INFO Learning process is done
+06/14/2020 02:47:52,224 root INFO Accuracy: 0.9259259259259259
+06/14/2020 02:47:52,226 root INFO Error|| Index dimension must be <= 2
+06/14/2020 02:53:27,206 root INFO Creating connection
+06/14/2020 02:53:27,794 root INFO Connection is ready
+06/14/2020 02:53:27,794 root INFO Limit for each class: 100
+06/14/2020 02:53:54,693 root INFO Big Df created
+06/14/2020 02:53:54,719 root INFO Initial model created
+06/14/2020 02:53:54,720 root INFO Learning process has been started
+06/14/2020 02:53:54,730 root INFO Learning process is done
+06/14/2020 02:53:54,765 root INFO Accuracy: 0.9576719576719577
+06/14/2020 02:53:54,793 root INFO Error|| Found input variables with inconsistent numbers of samples: [570, 189]
+06/14/2020 02:54:50,479 root INFO Creating connection
+06/14/2020 02:54:50,660 root INFO Connection is ready
+06/14/2020 02:54:50,661 root INFO Limit for each class: 100
+06/14/2020 02:55:40,308 root INFO Big Df created
+06/14/2020 02:55:40,348 root INFO Initial model created
+06/14/2020 02:55:40,349 root INFO Learning process has been started
+06/14/2020 02:55:40,367 root INFO Learning process is done
+06/14/2020 02:55:40,383 root INFO Accuracy: 0.9629629629629629
+06/14/2020 02:55:40,388 root INFO Multiclass F Beta: 0.9612479036637934
