@@ -1,8 +1,4 @@
 # Real-Time-Big-Data-Analytics
-You need to download the dataset as named 'pmdataset.csv' into folder Dataset
-
-
-https://www.kaggle.com/wkirgsn/electric-motor-temperature
 
 
 ## Change Log
@@ -40,5 +36,6 @@ https://www.kaggle.com/wkirgsn/electric-motor-temperature
 </table>
 
 ### Dataset Links
+Activity Recognition Exp (Classification, Real-Time) - https://archive.ics.uci.edu/ml/datasets/Heterogeneity+Activity+Recognition
 Elderly Sensor Data (Classification, Real-Time) - https://archive.ics.uci.edu/ml/datasets/Activity+recognition+with+healthy+older+people+using+a+batteryless+wearable+sensor<br>
 Electric Motor Temperature (Regression) - https://www.kaggle.com/wkirgsn/electric-motor-temperature
