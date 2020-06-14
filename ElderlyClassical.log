@@ -84,3 +84,30 @@
 06/14/2020 15:29:36,376 root INFO Test record number 24793
 06/14/2020 15:29:36,376 root INFO Mean squared error 0.07498084136651474
 06/14/2020 15:29:36,376 root INFO Accuracy 0.9898358407615052
+06/14/2020 17:39:25,131 root INFO Creating connection
+06/14/2020 17:39:25,287 root INFO Connection is ready
+06/14/2020 17:39:30,684 root INFO Data retrieved by all
+06/14/2020 17:39:30,804 root INFO Initial model created
+06/14/2020 17:39:30,804 root INFO Learning process has been started
+06/14/2020 17:39:31,69 root INFO Learning process is done
+06/14/2020 17:39:31,104 root INFO Train total time 0.2637629508972168
+06/14/2020 17:39:31,104 root INFO Train time per one iteration 5.2401500128581864e-06
+06/14/2020 17:39:31,104 root INFO Test total time 0.005001068115234375
+06/14/2020 17:39:31,105 root INFO Test time per one iteration 2.0171290748333702e-07
+06/14/2020 17:39:31,105 root INFO Mean squared error 0.07280280724398015
+06/14/2020 17:39:31,105 root INFO Accuracy 0.9899971766224338
+06/14/2020 17:39:31,105 root INFO Multiclass F Beta: 0.955930945309897
+06/14/2020 17:41:47,336 root INFO Creating connection
+06/14/2020 17:41:47,455 root INFO Connection is ready
+06/14/2020 17:41:55,131 root INFO Data retrieved by all
+06/14/2020 17:41:55,240 root INFO Initial model created
+06/14/2020 17:41:55,240 root INFO Learning process has been started
+06/14/2020 17:41:55,555 root INFO Learning process is done
+06/14/2020 17:41:55,598 root INFO Train total time 0.3148179054260254
+06/14/2020 17:41:55,598 root INFO Train time per one iteration 6.254453271600782e-06
+06/14/2020 17:41:55,598 root INFO Test total time 0.0049970149993896484
+06/14/2020 17:41:55,598 root INFO Test time per one iteration 2.0154942924977408e-07
+06/14/2020 17:41:55,598 root INFO Total time 0.31981492042541504
+06/14/2020 17:41:55,599 root INFO Mean squared error 0.07736054531520994
+06/14/2020 17:41:55,599 root INFO Accuracy 0.9895535030048804
+06/14/2020 17:41:55,599 root INFO Multiclass F Beta: 0.9535710859678335

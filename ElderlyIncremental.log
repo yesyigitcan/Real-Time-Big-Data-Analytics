@@ -83,3 +83,14 @@
 06/14/2020 15:38:55,616 root INFO Record number 75128
 06/14/2020 15:38:55,616 root INFO Mean squared error 0.46642973138460797
 06/14/2020 15:38:55,617 root INFO Accuracy 0.8471368101589304
+06/14/2020 17:47:52,70 root INFO Creating connection
+06/14/2020 17:47:52,536 root INFO Connection is ready
+06/14/2020 17:48:06,601 root INFO Creating connection
+06/14/2020 17:48:06,705 root INFO Connection is ready
+06/14/2020 17:48:16,156 root INFO Data retrieved by all
+06/14/2020 17:48:20,320 root INFO Initial model created
+06/14/2020 17:48:20,320 root INFO Learning process has been started
+06/14/2020 18:04:53,110 root INFO Learning process is done
+06/14/2020 18:04:53,110 root INFO Total time 992.7900161743164
+06/14/2020 18:04:53,110 root INFO Time per one iteration 0.013214647217739278
+06/14/2020 18:04:53,110 root INFO Record number 75128

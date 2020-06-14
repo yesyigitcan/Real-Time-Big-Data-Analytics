@@ -50,12 +50,21 @@ predictEndTime = time.time()
 acc = accuracy_score(y_test, predict)
 mse = mean_squared_error(y_test, predict)
 fbeta = fbeta_score(y_test, predict, average='macro', beta=0.5)
-logging.info("Total time for learning part in second " + str(learningEndTime - learningStartTime))
-logging.info("Total time for prediction part in second " + str(predictEndTime - predictStartTime))
-logging.info("Train record number " + str(len(y_train)))
-logging.info("Test record number " + str(len(y_test)))
+trainTotalTime = learningEndTime - learningStartTime
+testTotalTime = predictEndTime - predictStartTime
+logging.info("Train total time " + str(trainTotalTime))
+logging.info("Train time per one iteration " + str(trainTotalTime / len(y_train)))
+logging.info("Test total time " + str(testTotalTime))
+logging.info("Test time per one iteration " + str(testTotalTime / len(y_test)))
+logging.info("Total time " + str(trainTotalTime + testTotalTime))
+
 logging.info("Mean squared error " + str(mse))
 logging.info("Accuracy " + str(acc))
+logging.info("Multiclass F Beta: " + str(fbeta))
+
+requests.get('http://localhost:7070/elderlySensor/1/classical/m1/' +  str(fbeta * 100000))
+requests.get('http://localhost:7070/elderlySensor/1/classical/m2/' +  str(acc * 100000))
+
 print("Metrics by Test Set") 
 print("MSE:", mse)
 print("Accuracy:", acc)
