@@ -26,7 +26,7 @@ db = mysql.connector.connect(
 
 
 cur = db.cursor()
-cur.execute("select count(*) from " + tableName + "_" + phoneType + " where Model = '" + phoneType + "'")
+cur.execute("select count(*) from " + tableName + "_" + phoneType)
 tableSize = int(cur.fetchone()[0])
 cur.close()
 del db
@@ -42,7 +42,7 @@ logging.info("Creating connection")
 engine = create_engine('mysql+pymysql://root:@localhost/tez')
 logging.info("Connection is ready")
 
-n = 5
+n = 10
 metrics = (
     Accuracy(),
     MultiFBeta(betas=({'bike':1, 'null':1, 'sit':1, 'stairsdown':1, 'stairsup':1, 'stand':1, 'walk':1}))
@@ -52,7 +52,7 @@ metrics = (
 
 model = (
      StandardScaler() |
-     DecisionTreeClassifier()
+     KNeighborsClassifier()
 )
 logging.info("Initial model created for phone type " + phoneType)
 
@@ -60,41 +60,46 @@ logging.info("Initial model created for phone type " + phoneType)
 previousTime = None
 logging.info("Learning stage started with total step of " + str(stepNumber))
 for step in tqdm.tqdm(range(stepNumber+1)):
-    logging.info("Data retrieved at step " + str(step+1) + "/" + str(stepNumber))
+    logging.info("Data retrieved at step " + str(step+1) + "/" + str(stepNumber+1))
     if step < stepNumber:
-        query = "select * from " + tableName + "_" + phoneType + " where Model = '" + phoneType + "' and id >= " + str(step * dataPackageLimit) + " and id <= " + str((step+1) * dataPackageLimit)
+        query = "select x,y,z,gt from " + tableName + "_" + phoneType + " where id >= " + str(step * dataPackageLimit) + " and id <= " + str((step+1) * dataPackageLimit)
     else:
-        query = "select * from " + tableName + "_" + phoneType + " where Model = '" + phoneType + "' and id < " + str(stepNumber * dataPackageLimit)
+        query = "select x,y,z,gt from " + tableName + "_" + phoneType + " where id < " + str(stepNumber * dataPackageLimit)
     df = pandas.read_sql(query, engine)
-    df = df.drop("id", axis=1)
-    df = df.drop('Arrival_Time', axis=1)
-    df = df.drop("Model", axis=1)
     x = df.drop("gt", axis=1).to_dict(orient="row")
     y = list(df["gt"])
 
     window = [] #  [ (x_1,y_1,z_1), (x_2,y_2,z_2), .... ]
     for row, target in tqdm.tqdm(zip(x, y)):
-        if len(window) < n:
-            window.append((row["x"], row["y"], row["z"]))
-            continue
-        for i in range(n):
-            row.update({"x_" + str(i): window[i][0]})
-            row.update({"y_" + str(i): window[i][1]})
-            row.update({"z_" + str(i): window[i][2]})
+        try:
+            if len(window) < n:
+                window.append((row["x"], row["y"], row["z"]))
+                continue
+            for i in range(n):
+                row.update({"x_" + str(i): window[i][0]})
+                row.update({"y_" + str(i): window[i][1]})
+                row.update({"z_" + str(i): window[i][2]})
 
-        for i in range(n-1):
-            window[i] = window[i+1]
-        window[-1] = (row["x"], row["y"], row["z"])  
-        
-        y_pred = model.predict_one(row)
-        model.fit_one(row, target)
-        if y_pred is None:
+            for i in range(n-1):
+                window[i] = window[i+1]
+            window[-1] = (row["x"], row["y"], row["z"])  
+            
+            y_pred = model.predict_one(row)
+            model.fit_one(row, target)
+            if y_pred is None:
+                continue
+            for metric in metrics:
+                metric.update(target, y_pred)
+        except Exception as e:
+            print(str(e))
+            print(row)
             continue
-        for metric in metrics:
-            metric.update(target, y_pred)
-            #print(metric.get(), end=" ")
+            
         requests.get('http://localhost:7070/elderlySensor/1/incremental/acc/' + str(metrics[0].get() * 100))
 logging.info("Learning stage is done")
+
+import sys
+sys.exit(0)
 logging.info("Test stage started")
 
 engine = create_engine('mysql+pymysql://root:@localhost/tez')

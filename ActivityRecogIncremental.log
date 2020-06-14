@@ -57,3 +57,66 @@
 06/14/2020 03:22:56,720 root INFO Data retrieved at step 2/3
 06/14/2020 03:22:57,143 root INFO Data retrieved at step 3/3
 06/14/2020 03:22:57,569 root INFO Data retrieved at step 4/3
+06/14/2020 03:32:03,608 root INFO Creating connection
+06/14/2020 03:32:03,683 root INFO Connection is ready
+06/14/2020 03:32:03,683 root INFO Initial model created for phone type s3mini
+06/14/2020 03:32:03,683 root INFO Learning stage started with total step of 3
+06/14/2020 03:32:03,685 root INFO Data retrieved at step 1/3
+06/14/2020 03:40:40,695 root INFO Data retrieved at step 2/3
+06/14/2020 03:47:22,648 root INFO Data retrieved at step 3/3
+06/14/2020 03:47:39,616 root INFO Data retrieved at step 4/3
+06/14/2020 04:03:24,620 root INFO Learning stage is done
+06/14/2020 04:03:24,620 root INFO Test stage started
+06/14/2020 04:03:24,622 root INFO New connection for test stage established
+06/14/2020 04:03:24,622 root INFO Test stage has 100 records for each class from 7 different classes
+06/14/2020 04:03:54,723 root INFO Test data set has been created
+06/14/2020 04:03:54,723 root INFO Metrics are reset
+06/14/2020 04:03:54,732 root INFO Test results have been started to send to Grafana
+06/14/2020 04:03:57,587 root INFO All processes are done
+06/14/2020 13:41:33,267 root INFO Creating connection
+06/14/2020 13:41:33,443 root INFO Connection is ready
+06/14/2020 13:41:33,443 root INFO Initial model created for phone type s3mini
+06/14/2020 13:41:33,443 root INFO Learning stage started with total step of 3
+06/14/2020 13:41:33,444 root INFO Data retrieved at step 1/4
+06/14/2020 14:17:34,611 root INFO Creating connection
+06/14/2020 14:17:34,690 root INFO Connection is ready
+06/14/2020 14:17:34,690 root INFO Initial model created for phone type s3mini
+06/14/2020 14:17:34,690 root INFO Learning stage started with total step of 0
+06/14/2020 14:17:34,692 root INFO Data retrieved at step 1/1
+06/14/2020 14:22:50,503 root INFO Creating connection
+06/14/2020 14:22:50,554 root INFO Connection is ready
+06/14/2020 14:22:50,554 root INFO Initial model created for phone type s3mini
+06/14/2020 14:22:50,554 root INFO Learning stage started with total step of 0
+06/14/2020 14:22:50,556 root INFO Data retrieved at step 1/1
+06/14/2020 14:24:03,562 root INFO Creating connection
+06/14/2020 14:24:03,642 root INFO Connection is ready
+06/14/2020 14:24:03,643 root INFO Initial model created for phone type s3mini
+06/14/2020 14:24:03,643 root INFO Learning stage started with total step of 0
+06/14/2020 14:24:03,644 root INFO Data retrieved at step 1/1
+06/14/2020 14:25:30,330 root INFO Creating connection
+06/14/2020 14:25:30,399 root INFO Connection is ready
+06/14/2020 14:25:30,399 root INFO Initial model created for phone type s3mini
+06/14/2020 14:25:30,399 root INFO Learning stage started with total step of 0
+06/14/2020 14:25:30,400 root INFO Data retrieved at step 1/1
+06/14/2020 14:25:37,129 root INFO Learning stage is done
+06/14/2020 14:26:59,454 root INFO Creating connection
+06/14/2020 14:26:59,585 root INFO Connection is ready
+06/14/2020 14:26:59,585 root INFO Initial model created for phone type s3mini
+06/14/2020 14:26:59,586 root INFO Learning stage started with total step of 3
+06/14/2020 14:26:59,587 root INFO Data retrieved at step 1/4
+06/14/2020 14:28:10,653 root INFO Creating connection
+06/14/2020 14:28:10,722 root INFO Connection is ready
+06/14/2020 14:28:10,722 root INFO Initial model created for phone type s3mini
+06/14/2020 14:28:10,723 root INFO Learning stage started with total step of 3
+06/14/2020 14:28:10,724 root INFO Data retrieved at step 1/4
+06/14/2020 14:38:40,470 root INFO Data retrieved at step 2/4
+06/14/2020 14:47:24,961 root INFO Data retrieved at step 3/4
+06/14/2020 14:47:30,390 root INFO Data retrieved at step 4/4
+06/14/2020 14:57:51,815 root INFO Creating connection
+06/14/2020 14:57:51,866 root INFO Connection is ready
+06/14/2020 14:57:51,866 root INFO Initial model created for phone type s3mini
+06/14/2020 14:57:51,866 root INFO Learning stage started with total step of 3
+06/14/2020 14:57:51,867 root INFO Data retrieved at step 1/4
+06/14/2020 15:10:46,345 root INFO Data retrieved at step 2/4
+06/14/2020 15:22:12,334 root INFO Data retrieved at step 3/4
+06/14/2020 15:22:19,402 root INFO Data retrieved at step 4/4

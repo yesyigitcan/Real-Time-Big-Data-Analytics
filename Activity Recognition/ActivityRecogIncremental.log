@@ -23,3 +23,18 @@
 06/14/2020 03:22:04,852 root INFO Metrics are reset
 06/14/2020 03:22:04,890 root INFO Test results have been started to send to Grafana
 06/14/2020 03:22:05,279 root INFO All processes are done
+06/14/2020 13:56:56,268 root INFO Creating connection
+06/14/2020 13:56:56,384 root INFO Connection is ready
+06/14/2020 13:56:56,414 root INFO Initial model created for phone type s3mini
+06/14/2020 13:56:56,460 root INFO Learning stage started with total step of 3
+06/14/2020 13:56:56,476 root INFO Data retrieved at step 1/3
+06/14/2020 13:56:56,985 root INFO Data retrieved at step 2/3
+06/14/2020 13:56:57,393 root INFO Data retrieved at step 3/3
+06/14/2020 13:56:57,925 root INFO Data retrieved at step 4/3
+06/14/2020 14:14:04,719 root INFO Creating connection
+06/14/2020 14:14:04,863 root INFO Connection is ready
+06/14/2020 14:14:04,896 root INFO Initial model created for phone type s3mini
+06/14/2020 14:14:04,980 root INFO Learning stage started with total step of 0
+06/14/2020 14:14:04,989 root INFO Data retrieved at step 1/0
+06/14/2020 14:14:27,644 root INFO Learning stage started with total step of 0
+06/14/2020 14:14:27,653 root INFO Data retrieved at step 1/0
