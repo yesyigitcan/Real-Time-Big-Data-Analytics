@@ -11,7 +11,7 @@
 - Java Spring Boot, Prometheus and Grafana has been set
 - Communication of model between server is established
 
-### Comparision (KNN - MSE)
+### Comparision Electric Motor Temperature (KNN - MSE)
 <table>
   <tr>
     <td>Size</td>
@@ -32,6 +32,30 @@
     <td>1</td>
     <td>0.0013868631250914226</td>
     <td>0.0002303573580481708</td>
+  </tr>
+</table>
+
+### Comparision Elderly Sensor (DecisionTreeClassifier - Accuracy - Multiclass FBeta Score)
+<table>
+  <tr>
+    <td>Metric</td>
+    <td>Classical</td>
+    <td>Incremental</td>
+  </tr>
+  <tr>
+    <td>Accuracy</td>
+    <td>0.9898358407615052</td>
+    <td>0.8471368101589304</td>
+  </tr>
+  <tr>
+    <td>Multiclass F Beta Scores</td>
+    <td>0.9547341032426812</td>
+    <td>0.48519272539744446</td>
+  </tr>
+  <tr>
+    <td>MSE</td>
+    <td>0.07498084136651474</td>
+    <td>0.46642973138460797</td>
   </tr>
 </table>
 
