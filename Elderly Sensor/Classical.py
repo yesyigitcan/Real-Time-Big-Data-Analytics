@@ -1,7 +1,7 @@
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, accuracy_score
+from sklearn.metrics import mean_squared_error, accuracy_score, fbeta_score
 from sqlalchemy import create_engine
 import pandas
 import logging
@@ -49,6 +49,7 @@ predict = model.predict(X_test)
 predictEndTime = time.time()
 acc = accuracy_score(y_test, predict)
 mse = mean_squared_error(y_test, predict)
+fbeta = fbeta_score(y_test, predict, average='macro', beta=0.5)
 logging.info("Total time for learning part in second " + str(learningEndTime - learningStartTime))
 logging.info("Total time for prediction part in second " + str(predictEndTime - predictStartTime))
 logging.info("Train record number " + str(len(y_train)))
@@ -58,6 +59,7 @@ logging.info("Accuracy " + str(acc))
 print("Metrics by Test Set") 
 print("MSE:", mse)
 print("Accuracy:", acc)
+print("Multiclass F Beta:", fbeta)
 
 
 X = scaler.transform(X)
@@ -65,11 +67,12 @@ predict2 = model.predict(X, y)
 acc = accuracy_score(y, predict2)
 mse = mean_squared_error(y, predict2)
 
+'''
 mseRequest = requests.get('http://localhost:7070/elderlySensor/1/classical/mse/' +  str(mse * 100))
 print(mseRequest.status_code)
 accRequest = requests.get('http://localhost:7070/elderlySensor/1/classical/acc/' +  str(acc * 100))
 print(accRequest.status_code)
-
+'''
 print("Metrics by All")
 print("MSE:", mse)
 print("Accuracy:", acc)

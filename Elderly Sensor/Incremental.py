@@ -1,7 +1,7 @@
 from creme.neighbors import KNeighborsClassifier
 from creme.tree import DecisionTreeClassifier
 from creme.preprocessing import StandardScaler
-from creme.metrics import MSE, Accuracy
+from creme.metrics import MSE, Accuracy, MultiFBeta
 import pandas
 from sqlalchemy import create_engine
 from creme.compose import Pipeline
@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 import requests
 import logging
 import logging.handlers
+import tqdm
 
 logging.basicConfig(filename='ElderlyIncremental.log',
                             filemode='a',
@@ -36,7 +37,8 @@ y = list(df["class"])
 
 metrics = (
     MSE(), 
-    Accuracy()
+    Accuracy(),
+    MultiFBeta(betas=({1:0.5, 2:0.5, 3:0.5, 4:0.5}))
     )
 
 model = (
@@ -50,10 +52,12 @@ text = ""
 iterationTimeCounter = 0.0
 previous_time = 0.0
 logging.info("Learning process has been started")
-for row, target, time_passed in zip(x, y, timeList):
+for row, target, time_passed in tqdm.tqdm(zip(x, y, timeList)):
     time_range = time_passed - previous_time
+    '''
     if time_range > 0.0:
         time.sleep(time_range)
+    '''
     try:
         iterationStartTime = time.time()
         y_pred = model.predict_one(row)
@@ -64,11 +68,11 @@ for row, target, time_passed in zip(x, y, timeList):
         iterationTimeCounter += iterationEndTime - iterationStartTime
         for metric in metrics:
             metric.update(target, y_pred)
-            print("%.5f" % metric.get(), end=" ")
+            #print("%.5f" % metric.get(), end=" ")
             text += "%.5f" % metric.get() + ","
-    except:
-        print("error")
-        continue
+    except Exception as e:
+        print("error||" + str(e))
+        
     '''
     text += str(target) + "," + str(y_pred) + "," + str(time_passed) + "," + str(time_range) + ","
     if target == y_pred:
@@ -77,17 +81,23 @@ for row, target, time_passed in zip(x, y, timeList):
         text += "0\n"
     print("Real:", target, " Predicted:", y_pred, " Time:", "%.5f" % time_passed, " Sleep Time:", "%.5f" % time_range)
     '''
+    '''
     previous_time = time_passed
     mseRequest = requests.get('http://localhost:7070/elderlySensor/1/incremental/mse/' + str(metrics[0].get() * 100))
     print(mseRequest.status_code)
     accRequest = requests.get('http://localhost:7070/elderlySensor/1/incremental/acc/' + str(metrics[1].get() * 100))
     print(accRequest.status_code)
+    '''
 logging.info("Learning process is done")
 logging.info("Total time for iterations in second " + str(iterationTimeCounter))
 logging.info("Average time for an iteration in second " + str(iterationTimeCounter / recordNumber))
 logging.info("Record number " + str(recordNumber))
 logging.info("Mean squared error " + str(metrics[0].get()))
 logging.info("Accuracy " + str(metrics[1].get()))
+print("MSE: ", metrics[0].get())
+print("Accuracy: ", metrics[1].get())
+print("Multiclass F Beta: ", metrics[2].get())
+'''
 try:
     outputfile = open('C:\\Users\\YigitCan\\Desktop\\Tez-Workspace\\Real-Time-Big-Data-Analytics\\Elderly Sensor\\Output'+str(session)+'.txt', 'w')
 except:
@@ -97,7 +107,7 @@ except:
     outputfile = open("output.txt", 'w')
 outputfile.write(text)
 outputfile.close()
-    
+'''    
 
 
     
