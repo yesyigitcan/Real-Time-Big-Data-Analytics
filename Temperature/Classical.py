@@ -4,7 +4,8 @@ from sqlalchemy import create_engine
 import logging
 import logging.handlers
 import os
-
+import requests
+import time
 
 logging.basicConfig(filename='Classical.log',
                             filemode='a',
@@ -44,6 +45,7 @@ X_train, X_test, y_train, y_test = train_test_split(df_x, df_y, test_size=0.30, 
 print("Tablename:", tablename)
 logging.info("Tablename: " + tablename)
 
+'''
 ###### Support Vector Regression #####
 from sklearn.svm import SVR
 model = SVR()
@@ -63,17 +65,34 @@ print("Random Forest | Accuracy Score:", model.score(X_test, y_test))
 logging.info("Random Forest | Accuracy Score: " + str(model.score(X_test, y_test)))
 print("Random Forest | MSE:", mean_squared_error(y_test, model.predict(X_test)))
 logging.info("Random Forest | MSE: " + str(mean_squared_error(y_test, model.predict(X_test))))
-
+'''
 ##### KNN Regression #####
 from sklearn.neighbors import KNeighborsRegressor
 model = KNeighborsRegressor()
+startTime = time.time()
 model.fit(X_train, y_train)
+endTime = time.time()
+trainTotalTime = endTime - startTime
 
-print("KNN | Accuracy Score:", model.score(X_test, y_test))
-logging.info("KNN | Accuracy Score: " + str(model.score(X_test, y_test)))
-print("KNN | MSE:", mean_squared_error(y_test, model.predict(X_test)))
-logging.info("KNN | MSE: " + str(mean_squared_error(y_test, model.predict(X_test))))
-
+#acc = model.score(X_test, y_test)
+#print("KNN | Accuracy Score:", str(acc))
+#logging.info("KNN | Accuracy Score: " + str(acc))
+startTime = time.time()
+y_pred = model.predict(X_test)
+endTime = time.time()
+mse = mean_squared_error(y_test, y_pred)
+testTotalTime = endTime - startTime
+print("KNN | MSE:", str(mse))
+logging.info("KNN | MSE: " + str(mse))
+logging.info("Train total time: " + str(trainTotalTime))
+logging.info("Train time per iteration: " + str(trainTotalTime/len(list(y_train))))
+logging.info("Test total time: " + str(testTotalTime))
+logging.info("Test time per iteration: " + str(testTotalTime/len(list(y_test))))
+logging.info("Total time: " + str(trainTotalTime + testTotalTime))
+# According to our experiment KNN is the best fit algorithm for given dataset. So at this point we save the metrics in the graph.
+requests.get("http://localhost:7070/temp/1/classical/m1/" +  str(mse * 100000))
+#requests.get("http://localhost:7070/temp/2/classical/m2/" +  str(acc * 100000))
+'''
 ##### Linear Regression #####
 from sklearn.linear_model import LinearRegression
 model = LinearRegression()
@@ -103,3 +122,4 @@ print("Bayesian Ridge | Accuracy Score:", model.score(X_test, y_test))
 logging.info("Bayesian Ridge | Accuracy Score: " + str(model.score(X_test, y_test)))
 print("Bayesian Ridge | MSE:", mean_squared_error(y_test, model.predict(X_test)))
 logging.info("Bayesian Ridge | MSE: " + str(mean_squared_error(y_test, model.predict(X_test))))
+'''

@@ -35,11 +35,9 @@ df = df.drop("time(second)", axis=1)
 x = df.drop("class", axis=1).to_dict(orient="row")
 y = list(df["class"])
 
-metrics = (
-    MSE(), 
-    Accuracy(),
-    MultiFBeta(betas=({1:0.5, 2:0.5, 3:0.5, 4:0.5}))
-    )
+
+acc = Accuracy()
+fbeta = MultiFBeta(betas=({1:0.5, 2:0.5, 3:0.5, 4:0.5})) 
 
 model = (
      StandardScaler() |
@@ -49,54 +47,60 @@ logging.info("Initial model created")
 # Mse Accuracy Real
 recordNumber = len(y)
 text = ""
-iterationTimeCounter = 0.0
 previous_time = 0.0
 logging.info("Learning process has been started")
+startTime = time.time()
 for row, target, time_passed in tqdm.tqdm(zip(x, y, timeList)):
-    time_range = time_passed - previous_time
     '''
+    time_range = time_passed - previous_time
+    
     if time_range > 0.0:
         time.sleep(time_range)
+    previous_time = time_passed
     '''
     try:
-        iterationStartTime = time.time()
         y_pred = model.predict_one(row)
         model.fit_one(row, target)
         if y_pred is None:
             continue
-        iterationEndTime = time.time()
-        iterationTimeCounter += iterationEndTime - iterationStartTime
-        for metric in metrics:
-            metric.update(target, y_pred)
-            #print("%.5f" % metric.get(), end=" ")
-            text += "%.5f" % metric.get() + ","
+        acc.update(target, y_pred)
+        fbeta.update(target, y_pred)
+        requests.get('http://localhost:7070/elderlySensor/1/incremental/m1/' + str(fbeta.get() * 100000))
+        requests.get('http://localhost:7070/elderlySensor/1/incremental/m2/' + str(acc.get() * 100000))
     except Exception as e:
         print("error||" + str(e))
         
-    '''
-    text += str(target) + "," + str(y_pred) + "," + str(time_passed) + "," + str(time_range) + ","
-    if target == y_pred:
-        text += "1\n"
-    else:
-        text += "0\n"
-    print("Real:", target, " Predicted:", y_pred, " Time:", "%.5f" % time_passed, " Sleep Time:", "%.5f" % time_range)
-    '''
-    '''
-    previous_time = time_passed
-    mseRequest = requests.get('http://localhost:7070/elderlySensor/1/incremental/mse/' + str(metrics[0].get() * 100))
-    print(mseRequest.status_code)
-    accRequest = requests.get('http://localhost:7070/elderlySensor/1/incremental/acc/' + str(metrics[1].get() * 100))
-    print(accRequest.status_code)
-    '''
+    
+endTime = time.time()
+totalTime = endTime - startTime
 logging.info("Learning process is done")
-logging.info("Total time for iterations in second " + str(iterationTimeCounter))
-logging.info("Average time for an iteration in second " + str(iterationTimeCounter / recordNumber))
+logging.info("Total time " + str(totalTime))
+logging.info("Time per one iteration " + str(totalTime / recordNumber))
 logging.info("Record number " + str(recordNumber))
-logging.info("Mean squared error " + str(metrics[0].get()))
-logging.info("Accuracy " + str(metrics[1].get()))
-print("MSE: ", metrics[0].get())
-print("Accuracy: ", metrics[1].get())
-print("Multiclass F Beta: ", metrics[2].get())
+logging.info("Accuracy " + str(acc.get()))
+logging.info("Multiclass F Beta " + str(fbeta.get()))
+
+print("Accuracy: ", acc.get())
+print("Multiclass F Beta: ", fbeta.get())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 '''
 try:
     outputfile = open('C:\\Users\\YigitCan\\Desktop\\Tez-Workspace\\Real-Time-Big-Data-Analytics\\Elderly Sensor\\Output'+str(session)+'.txt', 'w')
