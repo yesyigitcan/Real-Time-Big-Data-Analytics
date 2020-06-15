@@ -12,6 +12,9 @@ import logging
 import logging.handlers
 import mysql.connector
 import tqdm
+import random
+
+random.seed(62)
 
 dataPackageLimit = 100000
 tableName = "accelerometer"
@@ -43,11 +46,8 @@ engine = create_engine('mysql+pymysql://root:@localhost/tez')
 logging.info("Connection is ready")
 
 n = 10
-metrics = (
-    Accuracy(),
-    MultiFBeta(betas=({'bike':1, 'null':1, 'sit':1, 'stairsdown':1, 'stairsup':1, 'stand':1, 'walk':1}))
-)
-
+acc = Accuracy()
+fbeta = MultiFBeta(betas=({'bike':0.5, 'sit':0.5, 'stairsdown':0.5, 'stairsup':0.5, 'stand':0.5, 'walk':0.5}))
 
 
 model = (
@@ -57,6 +57,10 @@ model = (
 logging.info("Initial model created for phone type " + phoneType)
 
 #modelName = ["nexus4", "s3", "s3mini", "samsungold"]
+classHistory = []
+classNum = 6
+trainFlag = True
+startTime = time.time()
 previousTime = None
 logging.info("Learning stage started with total step of " + str(stepNumber))
 for step in tqdm.tqdm(range(stepNumber+1)):
@@ -70,11 +74,18 @@ for step in tqdm.tqdm(range(stepNumber+1)):
     y = list(df["gt"])
 
     window = [] #  [ (x_1,y_1,z_1), (x_2,y_2,z_2), .... ]
+    historyRow = [] # [ (row, target), (row, target), (row, target), ... ]
+    historyLimit = 1000
     for row, target in tqdm.tqdm(zip(x, y)):
         try:
             if len(window) < n:
                 window.append((row["x"], row["y"], row["z"]))
                 continue
+            if target == "null":
+                continue
+            if target not in classHistory:
+                classHistory.append(target)
+
             for i in range(n):
                 row.update({"x_" + str(i): window[i][0]})
                 row.update({"y_" + str(i): window[i][1]})
@@ -85,21 +96,47 @@ for step in tqdm.tqdm(range(stepNumber+1)):
             window[-1] = (row["x"], row["y"], row["z"])  
             
             y_pred = model.predict_one(row)
-            model.fit_one(row, target)
+            if len(classHistory) == classNum and target == classHistory[-1]:
+                trainFlag = False
+            if trainFlag:
+                model.fit_one(row, target)
+            else:
+                try:
+                    if len(historyRow) == historyLimit:
+                        returnRowNums = random.randint(0, 10)
+                        for i in range(returnRowNums):
+                            randomIndex = random.randint(0, len(historyRow)-1)
+                            historyChunk = historyRow[randomIndex]
+                            historyRow.pop(randomIndex)
+                            model.fit_one(historyChunk[0], historyChunk[1])
+                        historyRow = []
+                    historyRow.append((row, target))
+                except Exception as e:
+                    print(str(e))
+                
             if y_pred is None:
                 continue
-            for metric in metrics:
-                metric.update(target, y_pred)
+            acc.update(target, y_pred)
+            fbeta.update(target, y_pred)
+            requests.get('http://localhost:7070/activity/1/incremental/m1/' + str(fbeta.get() * 100000))
+            requests.get('http://localhost:7070/activity/1/incremental/m2/' + str(acc.get() * 100000))
         except Exception as e:
             print(str(e))
             print(row)
             continue
             
-        requests.get('http://localhost:7070/elderlySensor/1/incremental/acc/' + str(metrics[0].get() * 100))
+        
+endTime = time.time()
+totalTime = endTime - startTime
 logging.info("Learning stage is done")
+logging.info("Accuracy: " + str(acc.get()))
+logging.info("Multiclass F Beta Score: " + str(fbeta.get()))
+logging.info("Total time: " + str(totalTime))
+logging.info("Time per one iteration: " + str(totalTime/tableSize))
 
-import sys
-sys.exit(0)
+
+
+'''
 logging.info("Test stage started")
 
 engine = create_engine('mysql+pymysql://root:@localhost/tez')
@@ -150,7 +187,7 @@ for i in range(len(y)):
         metric.update(y_real, y_pred)
     requests.get('http://localhost:7070/elderlySensor/1/incremental/acc/' + str(metrics[0].get() * 100))
 logging.info("All processes are done")
-
+'''
 
 
 

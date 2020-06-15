@@ -19,13 +19,16 @@ logging.info("Creating connection")
 engine = create_engine('mysql+pymysql://root:@localhost/tez')
 logging.info("Connection is ready")
 
-limitForEachClass = 100
+limitForEachClass = 1000
 logging.info("Limit for each class: " + str(limitForEachClass))
 classNames = ["bike", "null", "sit", "stairsdown", "stairup", "stand", "walk"]
 
+tableName = "accelerometer"
+phoneType = "s3mini"
+
 bigDf = None
 for i in range(len(classNames)):
-    query = "select x,y,z,gt from accelerometer a  where a.Model = 'nexus4' and a.gt = '" + classNames[i] + "' limit " + str(limitForEachClass)
+    query = "select x,y,z,gt from " + tableName + "_" + phoneType + " where gt = '" + classNames[i] + "' limit " + str(limitForEachClass)
     df = pandas.read_sql(query, engine)
     for i in range(1, n+1):
         df["x_" + str(i)] = None
@@ -62,17 +65,13 @@ predictStartTime = time.time()
 predictStartTime = time.time()
 predict = model.predict(X_test)
 predictEndTime = time.time()
+logging.info("Train total time: " + str(learningEndTime - learningStartTime))
+logging.info("Test total time: " + str(predictEndTime - predictStartTime))
 acc = accuracy_score(y_test, predict)
-accRequest = requests.get('http://localhost:7070/elderlySensor/1/classical/acc/' +  str(acc * 100))    
+requests.get('http://localhost:7070/activity/1/classical/m2/' +  str(acc * 100000))    
+fbeta = fbeta_score(y_test, predict, average='macro', beta=0.5)
+requests.get('http://localhost:7070/activity/1/classical/m1/' +  str(fbeta * 100000))
 logging.info("Accuracy: " + str(acc))
-print("Accuracy: ", acc)
-
-try:
-    fbeta = fbeta_score(y_test, predict, average='macro', beta=0.5)
-    logging.info("Multiclass F Beta: " + str(fbeta))
-    print("Multiclass F Beta: ", fbeta)
-except Exception as e:
-    logging.info("Error|| " + str(e))
 
 
 
