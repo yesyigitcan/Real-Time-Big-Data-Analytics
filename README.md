@@ -63,6 +63,11 @@
 ### Comparision Elderly Sensor (DecisionTreeClassifier - Accuracy - Multiclass FBeta Score)
 <table>
   <tr>
+    <td>Record Number</td>
+    <td style="text-align: center; vertical-align: middle;">6000</td>
+    <td colspan = "3" style="text-align: center; vertical-align: middle;">348844</td>
+  </tr>
+  <tr>
     <td>Metric</td>
     <td>Classical</td>
     <td>Incremental (Full Update)</td>
