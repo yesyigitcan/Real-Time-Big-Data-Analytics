@@ -39,3 +39,22 @@
 06/14/2020 02:55:40,367 root INFO Learning process is done
 06/14/2020 02:55:40,383 root INFO Accuracy: 0.9629629629629629
 06/14/2020 02:55:40,388 root INFO Multiclass F Beta: 0.9612479036637934
+06/15/2020 10:19:42,662 root INFO Creating connection
+06/15/2020 10:19:42,863 root INFO Connection is ready
+06/15/2020 10:19:42,863 root INFO Limit for each class: 100
+06/15/2020 10:21:27,104 root INFO Creating connection
+06/15/2020 10:21:27,170 root INFO Connection is ready
+06/15/2020 10:21:27,170 root INFO Limit for each class: 1000
+06/15/2020 10:21:43,799 root INFO Creating connection
+06/15/2020 10:21:43,871 root INFO Connection is ready
+06/15/2020 10:21:43,871 root INFO Limit for each class: 1000
+06/15/2020 10:21:59,967 root INFO Creating connection
+06/15/2020 10:22:00,36 root INFO Connection is ready
+06/15/2020 10:22:00,36 root INFO Limit for each class: 1000
+06/15/2020 10:23:09,581 root INFO Big Df created
+06/15/2020 10:23:09,635 root INFO Initial model created
+06/15/2020 10:23:09,636 root INFO Learning process has been started
+06/15/2020 10:23:09,746 root INFO Learning process is done
+06/15/2020 10:23:09,747 root INFO Train total time: 0.10993576049804688
+06/15/2020 10:23:09,747 root INFO Test total time: 0.00099945068359375
+06/15/2020 10:23:09,857 root INFO Accuracy: 0.8117706747843734
