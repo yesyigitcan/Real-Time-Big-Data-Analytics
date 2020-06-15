@@ -35,7 +35,7 @@
   </tr>
 </table>
 
-### Comparision Elderly Sensor (DecisionTreeClassifier - Accuracy - Multiclass FBeta Score)
+### Comparision Elderly Sensor (DecisionTreeClassifier - Accuracy - Multiclass F Beta Score - MSE)
 <table>
   <tr>
     <td>Metric</td>
@@ -48,7 +48,7 @@
     <td>0.8471368101589304</td>
   </tr>
   <tr>
-    <td>Multiclass F Beta Scores</td>
+    <td>Multiclass F Beta Score</td>
     <td>0.9547341032426812</td>
     <td>0.48519272539744446</td>
   </tr>
@@ -56,6 +56,32 @@
     <td>MSE</td>
     <td>0.07498084136651474</td>
     <td>0.46642973138460797</td>
+  </tr>
+</table>
+
+### Comparision Activity Recognition by Phone Acceloremeter Dataset (DecisionTreeClassifier - Accuracy - Multiclass F Beta Score)
+### Comparision Elderly Sensor (DecisionTreeClassifier - Accuracy - Multiclass FBeta Score)
+<table>
+  <tr>
+    <td>Metric</td>
+    <td>Classical</td>
+    <td>Incremental (Full Update)</td>
+    <td>Incremental (Stop Train when All Class Type is Experienced)</td>
+    <td>Incremental (Update Model with Data Rows Catched by System - Randomness)</td>
+  </tr>
+  <tr>
+    <td>Accuracy</td>
+    <td>0.8117706747843734</td>
+    <td>0.9995518094856023</td>
+    <td>0.7003</td>
+    <td>0.8912000802729175</td>
+  </tr>
+  <tr>
+    <td>Multiclass F Beta Score</td>
+    <td>0.8143</td>
+    <td>0.9995290401759328</td>
+    <td>0.8219</td>
+    <td>0.883180158164952</td>
   </tr>
 </table>
 
